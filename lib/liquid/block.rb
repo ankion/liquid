@@ -134,6 +134,7 @@ module Liquid
             break
           end
 
+          token.force_encoding('utf-8') if token.respond_to?(:force_encoding)
           token_output = (token.respond_to?(:render) ? token.render(context) : token)
           context.increment_used_resources(:render_length_current, token_output)
           if context.resource_limits_reached?
